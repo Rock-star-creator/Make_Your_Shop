@@ -1,2 +1,2 @@
-# Make_Your_Shop
+# Make Your Shop
 It will provide a user friendly  Ecommerce platform.
