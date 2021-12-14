@@ -1,6 +1,6 @@
-const { connection } = require("../cred/mysqlCred");
+const sqlCred = require("../cred/mysqlCred");
 
 
 module.exports = {
-    dbConnection : connection
+    dbConnection : sqlCred.dbConnect
 }

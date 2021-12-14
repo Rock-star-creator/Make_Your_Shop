@@ -1,21 +1,25 @@
 var mysql = require('mysql');
 
-const connection = mysql.createConnection({
-    host: "192.168.68.130:8080",
+const connection = {
+    host: "192.168.1.216",
     port: "3306",
-    user: "",
+    user: "mys",
     password: "",
     database: "make_your_shop"
-});
+}
 
 
-connection.connect(function (err) {
-    if(!err){
-        console.log("database conncted");
-    }
-    else{
-        console.log(`not connected because of ${err}`);
-    }
-});
 
-module.exports = connection;
+
+// connection.connect(function (err) {
+//     if (!err) {
+//         console.log("database conncted");
+//     }
+//     else {
+//         console.log(`not connected because of ${err}`);
+//     }
+// });
+
+
+
+exports.dbConnect= mysql.createConnection(connection);

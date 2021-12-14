@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 const {dbConnection} = require('./cred/env');
 
-console.log(dbConnection);
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
