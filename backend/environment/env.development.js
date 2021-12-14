@@ -7,5 +7,6 @@ module.exports = {
     paymentTable : 'payment',
     productsTable : 'products',
     usersTable: 'users',
-    walleteTable : 'wallete'
+    walleteTable : 'wallete',
+    product_imagesTable : 'product_images'
 }
