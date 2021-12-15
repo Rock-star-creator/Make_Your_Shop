@@ -1,13 +1,12 @@
 var express = require('express');
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 const { expressValidation } = require('../helper/validation.Helper');
-const { addProduct, getAllProduct } = require('../controllers/products.Controller');
+const { addProduct, getAllProduct, getProductByCatagory, updateProductById, getProductData } = require('../controllers/products.Controller');
+
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', getAllProduct, function (req, res, next) {
- 
-});
+
 
 
 router.post('/addProduct', [
@@ -19,4 +18,19 @@ router.post('/addProduct', [
 
 });
 
+router.get('/', getAllProduct, function (req, res, next) {
+
+});
+
+router.get('/:id', getProductData, function (req, res, next) {
+
+});
+
+router.get('/getProductByCatagory/:catagory', getProductByCatagory, function (req, res, next) {
+
+});
+
+router.post('/updateProduct/:id', updateProductById, function (req, res, next) {
+
+});
 module.exports = router;
