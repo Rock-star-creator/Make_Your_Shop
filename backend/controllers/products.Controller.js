@@ -10,7 +10,7 @@ exports.addProduct = (req, res) => {
         quantity: req.body.quantity,
         brand: req.body.brand,
         model: req.body.model,
-        createdBy: 'shyam'
+        createdBy: req.body.createdBy
     }
 
     insertProductData(addProductReq).then(addproductResp => {
@@ -88,7 +88,7 @@ exports.updateProductById = (req, res) => {
         brand: req.body.brand ,
         model: req.body.model,
         status: req.body.status,
-        createdBy : 'shyam'
+        createdBy : req.body.createdBy
     }
     updateProduct(req.params.id, updateReq)
 }
