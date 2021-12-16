@@ -18,6 +18,18 @@ exports.createUser = (req, res) => {
         "status" : 1
  }
  console.log("user created successfully");
-    insertUserData(newuserdata,res);
+    insertUserData(newuserdata).then(success => {
+    res.status(200).json({
+                status: 1,
+                message:"user and wallete created successfully"
+            })
+
+    }).catch(err =>{
+        res.status(400).json({
+        status: 0,
+        message:err.err
+    })
+    
+    })
     
 }
