@@ -47,3 +47,10 @@ exports.loginData = (reqlogindata) => {
     var loginquery = `SELECT user_password,Email FROM users WHERE Email = '${reqlogindata.email}'`;
     return querBuilder(loginquery);
 }
+
+
+exports.getUserData = (uid) => {
+    var q = `SELECT * FROM ${env.usersTable} WHERE User_id = '${uid}'`;
+
+    return querBuilder(q)
+}
