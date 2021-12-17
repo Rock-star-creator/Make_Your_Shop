@@ -1,15 +1,16 @@
 const env = require("../cred/env");
 const { randomAlphaNumeric } = require('../helper/randomGenerator.Helper')
+const { querBuilder } = require('../helper/queryBuilder.Helper')
 
 exports.insertUserData = ( newuserdata ) => {
-var emailexit= `SELECT * FROM users WHERE Email = '${newuserdata.email}' OR Mobile_no = ${newuserdata.mobileno}`;
-return new Promise((resolve, reject) => {
-env.dbConnection.query(emailexit,(err,result) => {
-if (result.length == 0) {
-var userId = randomAlphaNumeric();
-var walleteId = randomAlphaNumeric();
-var q = `INSERT INTO users(User_id,User_firstname,User_middlename,User_lastname,user_password,Mobile_no,Email,User_type,Date,Status) VALUES ('${userId}','${newuserdata.fname}','${newuserdata.mname}','${newuserdata.lastname}','${newuserdata.password}','${newuserdata.mobileno}','${newuserdata.email}','${newuserdata.usertype}','${newuserdata.date}','${newuserdata.status}')`;
-env.dbConnection.query(q, (err, result) => {
+    var emailexit= `SELECT * FROM users WHERE Email = '${newuserdata.email}' OR Mobile_no = ${newuserdata.mobileno}`;
+    return new Promise((resolve, reject) => {
+    env.dbConnection.query(emailexit,(err,result) => {
+    if (result.length == 0) {
+    var userId = randomAlphaNumeric();
+    var walleteId = randomAlphaNumeric();
+    var q = `INSERT INTO users(User_id,User_firstname,User_middlename,User_lastname,user_password,Mobile_no,Email,User_type,Date,Status) VALUES ('${userId}','${newuserdata.fname}','${newuserdata.mname}','${newuserdata.lastname}','${newuserdata.password}','${newuserdata.mobileno}','${newuserdata.email}','${newuserdata.usertype}','${newuserdata.date}','${newuserdata.status}')`;
+    env.dbConnection.query(q, (err, result) => {
         if (err) {
             console.log("error on insert ==>", err);
             reject({ err: "user insert error" });
@@ -37,8 +38,12 @@ env.dbConnection.query(q, (err, result) => {
     console.log("Email or mobileno already used");
    reject({ err: "Email or mobileno already used" })
     }
-    
- })
+})
 })
 
+}
+
+exports.loginData = (reqlogindata) => {
+    var loginquery = `SELECT user_password,Email FROM users WHERE Email = '${reqlogindata.email}'`;
+    return querBuilder(loginquery);
 }
