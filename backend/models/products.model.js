@@ -1,10 +1,10 @@
 const env = require("../cred/env");
 const { randomAlphaNumeric } = require('../helper/randomGenerator.Helper')
 const { dbConnection, productsTable } = require('../cred/env')
-const moment = require('moment-timezone');
+// const moment = require('moment-timezone');
 const { querBuilder } = require("../helper/queryBuilder.Helper");
+const { currentDate } = require("../helper/date.Helper");
 
-const currentDate = moment().tz("asia/kolkata").format("YYYY-MM-DD");
 
 
 exports.insertProductData = (productInfo) => {
@@ -12,8 +12,12 @@ exports.insertProductData = (productInfo) => {
     var prodId = randomAlphaNumeric();
 
     var q = `INSERT INTO ${productsTable} (product_id, price, category, quantity, product_name, status, created_by, created_date, brand, model)
-     VALUES ('${prodId}', ${productInfo.price}, '${productInfo.category}', '${productInfo.quantity}','${productInfo.productName}', 1, '${productInfo.createdBy}', '${currentDate}', '${productInfo.brand}', '${productInfo.model}' )`;
+     VALUES ('${prodId}', ${productInfo.price}, '${productInfo.category}', '${productInfo.quantity}','${productInfo.productName}', 1, '${productInfo.createdBy}', '${currentDate()}', '${productInfo.brand}', '${productInfo.model}' )`;
 
+     var uploadImage = `INSERT INTO ${env.product_imagesTable} (product_id, image_data, image_type, status)
+     VALUES ('${prodId}','${productInfo.Img_data}', '${productInfo.Img_type}', 1)`
+
+     querBuilder(uploadImage);
     return querBuilder(q);
 }
 
@@ -31,6 +35,8 @@ exports.getAllProduct = (prodId) => {
     return querBuilder(q);
 
 }
+
+
 
 exports.getAllProductByCatagory = (catagory) => {
 

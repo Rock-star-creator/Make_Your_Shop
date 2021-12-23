@@ -46,7 +46,7 @@ exports.insertUserData = (newuserdata) => {
 
 
 exports.getUserData = (uid) => {
-    var q = `SELECT * FROM ${env.usersTable} WHERE User_id = '${uid}'`;
+    var q =  `SELECT * FROM ${env.usersTable} WHERE User_id = '${uid}'`;
 
     return querBuilder(q)
 }

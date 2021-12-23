@@ -14,4 +14,5 @@ exports.paymentTable = environmentSetup.paymentTable;
 exports.productsTable = environmentSetup.productsTable;
 exports.usersTable = environmentSetup.usersTable;
 exports.walleteTable = environmentSetup.walleteTable;
+exports.product_imagesTable = environmentSetup.product_imagesTable;
 

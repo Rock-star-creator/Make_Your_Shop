@@ -3,7 +3,7 @@ const sqlCred = require("../cred/mysqlCred");
 
 module.exports = {
     dbConnection : sqlCred.dbConnect,
-    orderTable : 'order',
+    orderTable : 'orders',
     paymentTable : 'payment',
     productsTable : 'products',
     usersTable: 'users',

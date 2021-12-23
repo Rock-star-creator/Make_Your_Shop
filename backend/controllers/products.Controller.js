@@ -2,7 +2,7 @@ const { insertProductData, getAllProduct, getAllProductByCatagory, updateProduct
 
 
 exports.addProduct = (req, res) => {
-
+console.log("file datas==>", req.file);
     var addProductReq = {
         productName: req.body.productName,
         price: req.body.price,
@@ -10,7 +10,9 @@ exports.addProduct = (req, res) => {
         quantity: req.body.quantity,
         brand: req.body.brand,
         model: req.body.model,
-        createdBy: req.body.createdBy
+        createdBy: req.body.createdBy,
+        Img_data: req.file,
+        Img_type: req.file.mimetype
     }
 
     insertProductData(addProductReq).then(addproductResp => {
@@ -81,14 +83,14 @@ exports.getProductByCatagory = (req, res) => {
 exports.updateProductById = (req, res) => {
 
     var updateReq = {
-        productName: req.body.productName ,
-        price: req.body.price ,
-        category: req.body.category ,
-        quantity: req.body.quantity ,
-        brand: req.body.brand ,
+        productName: req.body.productName,
+        price: req.body.price,
+        category: req.body.category,
+        quantity: req.body.quantity,
+        brand: req.body.brand,
         model: req.body.model,
         status: req.body.status,
-        createdBy : req.body.createdBy
+        createdBy: req.body.createdBy
     }
     updateProduct(req.params.id, updateReq)
 }
@@ -98,7 +100,7 @@ exports.getProductData = (req, res) => {
 
     getAllProduct(req.params.id).then(productResp => {
 
-        res.status(400).json({
+        res.status(200).json({
             status: 1,
             data: productResp.data
         })

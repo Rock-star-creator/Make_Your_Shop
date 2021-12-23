@@ -9,10 +9,10 @@ exports.querBuilder = (qry) => {
 
         dbConnection.query(qry, (err, result) => {
             if (!err) {
-                console.log("Query Executed ==>", JSON.stringify(result));
+                console.log("\nQuery Executed ==>", JSON.stringify(result));
                 resolve({ data: result })
             } else {
-                console.log("error on query execution ==>", err);
+                console.log("\nerror on query execution ==>", err);
                 reject({ err: err })
             }
         })
