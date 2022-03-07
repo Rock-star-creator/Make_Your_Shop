@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllProductComponent } from './products/all-product/all-product.component';
-import { ProductComponent } from './products/product/product.component';
+import { HomeComponent } from './user/home/home.component';
+
 
 const routes: Routes = [
-  { path: '', component: AllProductComponent },
-  { path: '1', component: ProductComponent }
+  {path: "", component: HomeComponent},
+  {path: "admin", loadChildren:() => import('./admin/admin.module').then(m => m.AdminModule)}
 
 ];
 
